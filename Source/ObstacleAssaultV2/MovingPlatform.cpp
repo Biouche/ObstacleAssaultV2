@@ -3,6 +3,7 @@
 
 #include "MovingPlatform.h"
 
+
 // Sets default values
 AMovingPlatform::AMovingPlatform()
 {
@@ -15,7 +16,9 @@ AMovingPlatform::AMovingPlatform()
 void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	TestInt = 44;
+
+	APlusB = InputA + InputB;
 }
 
 // Called every frame
