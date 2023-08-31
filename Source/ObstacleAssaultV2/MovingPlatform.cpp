@@ -18,6 +18,10 @@ void AMovingPlatform::BeginPlay()
 	Super::BeginPlay();
 
 	StartLocation = GetActorLocation();
+
+	FString name = GetName();
+
+	UE_LOG(LogTemp, Display, TEXT("Actor Name : %s"), *name);
 }
 
 // Called every frame
@@ -35,16 +39,9 @@ void AMovingPlatform::Tick(float DeltaTime)
 
 	if (MovedDistance > TargetDistance)
 	{
-
 		StartLocation = StartLocation + (TargetDistance * PlatformVelocity.GetSafeNormal());
 		SetActorLocation(StartLocation);
-
 		PlatformVelocity = -PlatformVelocity;
 	}
-
-
-
-
-
 }
 
