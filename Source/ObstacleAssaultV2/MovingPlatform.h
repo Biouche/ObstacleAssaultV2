@@ -10,8 +10,10 @@ UCLASS()
 class OBSTACLEASSAULTV2_API AMovingPlatform : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+	float initialZPos = 0;
+
+public:
 	// Sets default values for this actor's properties
 	AMovingPlatform();
 
@@ -19,22 +21,14 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere)
-	int32 TestInt = 11;
 
-	UPROPERTY(EditAnywhere)
-	int32 InputA = 11;
+	UPROPERTY(EditAnywhere, Category = "Moving Platform")
+	float ZBounceDelta = 100;
 
-	UPROPERTY(EditAnywhere)
-	int32 InputB = 11;
-
-	UPROPERTY(EditAnywhere)
-	int32 APlusB = 11;
-
-	UPROPERTY(EditAnywhere)
-	bool TestBool = true;
+	UPROPERTY(EditAnywhere, Category = "Moving Platform")
+	FVector PlatformVelocity = FVector(0, 1, 0);
 };
