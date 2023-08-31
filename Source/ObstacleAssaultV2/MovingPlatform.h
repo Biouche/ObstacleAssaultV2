@@ -11,7 +11,7 @@ class OBSTACLEASSAULTV2_API AMovingPlatform : public AActor
 {
 	GENERATED_BODY()
 
-	float initialZPos = 0;
+
 
 public:
 	// Sets default values for this actor's properties
@@ -27,8 +27,14 @@ public:
 
 
 	UPROPERTY(EditAnywhere, Category = "Moving Platform")
-	float ZBounceDelta = 100;
+	float TargetDistance = 100;
 
 	UPROPERTY(EditAnywhere, Category = "Moving Platform")
 	FVector PlatformVelocity = FVector(0, 1, 0);
+
+	UPROPERTY(VisibleAnywhere, Category = "Moving Platform")
+	FVector StartLocation = FVector(0, 0, 0);
+
+	UPROPERTY(VisibleAnywhere, Category = "Moving Platform")
+	float MovedDistance = 0;
 };

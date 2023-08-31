@@ -17,7 +17,7 @@ void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
 
-	initialZPos = GetActorLocation().Z;
+	StartLocation = GetActorLocation();
 }
 
 // Called every frame
@@ -25,18 +25,26 @@ void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	FVector temp = GetActorLocation();
+	FVector CurrentLocation = GetActorLocation();
 
-	if (temp.Z > initialZPos + ZBounceDelta)
+	CurrentLocation += PlatformVelocity * DeltaTime;
+
+	SetActorLocation(CurrentLocation);
+
+	MovedDistance = FVector::Dist(StartLocation, CurrentLocation);
+
+	if (MovedDistance > TargetDistance)
+	{
+
+		StartLocation = StartLocation + (TargetDistance * PlatformVelocity.GetSafeNormal());
+		SetActorLocation(StartLocation);
+
 		PlatformVelocity = -PlatformVelocity;
-
-	if (temp.Z < initialZPos)
-		PlatformVelocity = -PlatformVelocity;
-
-	temp += PlatformVelocity * DeltaTime;
+	}
 
 
-	SetActorLocation(temp);
+
+
 
 }
 
